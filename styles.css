@@ -23,7 +23,7 @@ button:hover {
 }
 
 input {
-    width: 30%;
+    width: 90%;
     outline: none;
     margin: 10px 5%;
     padding: 15px 10px;
@@ -37,7 +37,7 @@ input:focus {
 }
 
 select {
-    width: 90%;
+    width: 30%;
     outline: none;
     margin: 10px 5%;
     padding: 15px 10px;
