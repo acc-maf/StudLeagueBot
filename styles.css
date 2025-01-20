@@ -33,11 +33,11 @@ input {
 }
 
 input:focus {
-    border-color: #db5d5d;
+    border-color: MediumAquamarine;
 }
 
 select {
-    width: 90%;
+    width: 100%;
     outline: none;
     margin: 10px 5%;
     padding: 15px 10px;
@@ -47,5 +47,5 @@ select {
 }
 
 select:focus {
-    border-color: #db5d5d;
+    border-color: MediumAquamarine;
 }
