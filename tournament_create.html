@@ -15,7 +15,7 @@
         <input type="text" placeholder="Дата и время начала" id="date">
         <input type="text" placeholder="Правила (Polemica, ФСМ, МСЛ)" id="rules">
         <input type="text" placeholder="Скоринг (Polemica, ФСМ, МСЛ)" id="score">
-        <select id="type-select">
+        <select id="typ">
             <option value="solo">Одиночный</option>
             <option value="team">Командный</option>
         </select>
@@ -35,7 +35,7 @@
             let date = document.getElementById("date").value;
             let rules = document.getElementById("rules").value;
             let score = document.getElementById("score").value;
-            let typ = document.getElementById("type-select").value;
+            let typ = document.getElementById("typ").value;
 
             if (name.length < 5) {
                 document.getElementById("error").innerText = 'Ошибка';
