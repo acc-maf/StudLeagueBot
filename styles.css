@@ -14,7 +14,7 @@ button {
     font-weight: 500;
     cursor: pointer;
     transition: all 500ms ease;
-    background-color: var(--tg-theme-bg-color);
+    background-color: var(--tg-theme-secondary-bg-color);
     color: green;
 }
 
