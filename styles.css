@@ -23,7 +23,7 @@ button:hover {
 }
 
 input {
-    width: 50%;
+    width: 70%;
     outline: none;
     margin: 10px 5%;
     padding: 15px 10px;
@@ -38,8 +38,24 @@ input:focus {
     border-color: MediumAquamarine;
 }
 
+textarea {
+    width: 70%;
+    outline: none;
+    margin: 10px 5%;
+    padding: 15px 10px;
+    font-size: 14px;
+    border: 2px solid silver;
+    border-radius: 5px;
+    color: var(--tg-theme-text-color);
+    background-color: var(--tg-theme-bg-color);
+}
+
+textarea:focus {
+    border-color: MediumAquamarine;
+}
+
 select {
-    width: 52%;
+    width: 72%;
     outline: none;
     margin: 10px 5%;
     padding: 15px 10px;
