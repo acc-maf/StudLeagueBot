@@ -14,8 +14,8 @@ button {
     font-weight: 500;
     cursor: pointer;
     transition: all 500ms ease;
-    color: deepskyblue;
-    background: indianred;
+    color: green;
+    background: (--tg-theme-text-color);
 }
 
 button:hover {
@@ -32,6 +32,10 @@ input {
     border-radius: 5px;
 }
 
+input:focus {
+    border-color: #db5d5d;
+}
+
 select {
     width: 90%;
     outline: none;
@@ -42,6 +46,6 @@ select {
     border-radius: 5px;
 }
 
-input:focus {
+select:focus {
     border-color: #db5d5d;
 }
