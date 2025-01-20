@@ -19,7 +19,7 @@
             <option value="solo">Одиночный</option>
             <option value="team">Командный</option>
         </select>
-        <div id="error"></div>
+        <input type="range" min="10" max="100" id="limit">
         <button id="create">Создать</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
@@ -36,11 +36,8 @@
             let rules = document.getElementById("rules").value;
             let score = document.getElementById("score").value;
             let typ = document.getElementById("typ").value;
+            let limit = document.getElementById("limit").value;
 
-            if (name.length < 5) {
-                document.getElementById("error").innerText = 'Ошибка';
-                return;
-            }
             let data = {
                 identify: identify,
                 name: name,
@@ -48,7 +45,8 @@
                 date: date,
                 rules: rules,
                 score: score,
-                typ: typ
+                typ: typ,
+                limit: limit
             }
             tg.sendData(JSON.stringify(data));
             tg.close();
