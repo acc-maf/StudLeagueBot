@@ -1,0 +1,10 @@
+body {
+    font-family: Arial;
+    color: var(--tg-theme-text-color)
+    background: var(--tg-theme-bg-color)
+}
+
+h1 {
+    color: deepskyblue;
+    color: indianred;
+}
