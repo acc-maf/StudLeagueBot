@@ -15,7 +15,6 @@ button {
     cursor: pointer;
     transition: all 500ms ease;
     color: green;
-    background: (--tg-theme-text-color);
 }
 
 button:hover {
@@ -30,6 +29,8 @@ input {
     font-size: 14px;
     border: 2px solid silver;
     border-radius: 5px;
+    color: var(--tg-theme-text-color);
+    background-color: var(--tg-theme-bg-color);
 }
 
 input:focus {
@@ -44,6 +45,8 @@ select {
     font-size: 14px;
     border: 2px solid silver;
     border-radius: 5px;
+    color: var(--tg-theme-text-color);
+    background-color: var(--tg-theme-bg-color);
 }
 
 select:focus {
