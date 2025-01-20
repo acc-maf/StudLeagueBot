@@ -12,16 +12,36 @@
         <input type="text" placeholder="Идентификатор" id="identify">
         <input type="text" placeholder="Название" id="name">
         <input type="text" placeholder="Описание" id="desc">
+        <input type="text" placeholder="Дата и время начала" id="date">
+        <input type="text" placeholder="Правила (Polemica, ФСМ, МСЛ)" id="rules">
+        <input type="text" placeholder="Скоринг (Polemica, ФСМ, МСЛ)" id="score">
         <button id="create">Создать</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let create = document.getElementById("create");
+        tg.expand();
 
         order.addEventListener("click", () => {
-            tg.close();
+            let identify = document.getElementById("identify").value;
+            let name = document.getElementById("name").value;
+            let desc = document.getElementById("desc").value;
+            let date = document.getElementById("date").value;
+            let rules = document.getElementById("rules").value;
+            let score = document.getElementById("score").value;
+
+            let data {
+                identify: identify,
+                name: name,
+                desc: desc,
+                date: date,
+                rules: rules,
+                score: score
+            }
+            tg.sendData(JSON.stringify(data));
         });
     </script>
 </body>
 </html>
+
