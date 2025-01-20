@@ -14,6 +14,7 @@ button {
     font-weight: 500;
     cursor: pointer;
     transition: all 500ms ease;
+    background-color: var(--tg-theme-bg-color);
     color: green;
 }
 
@@ -38,7 +39,7 @@ input:focus {
 }
 
 select {
-    width: 50%;
+    width: 52%;
     outline: none;
     margin: 10px 5%;
     padding: 15px 10px;
