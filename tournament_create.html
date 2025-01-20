@@ -32,13 +32,6 @@
         let create = document.getElementById("create");
         tg.expand();
 
-        const value = document.querySelector("#value");
-        const input = document.querySelector("#limit");
-        value.textContent = input.value;
-        input.addEventListener("input", (event) => {
-            value.textContent = event.target.value;
-        });
-
         create.addEventListener("click", () => {
             let identify = document.getElementById("identify").value;
             let name = document.getElementById("name").value;
