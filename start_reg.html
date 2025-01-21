@@ -36,37 +36,54 @@
         let reg = document.getElementById("reg");
         tg.expand();
 
-        let objectURL;
-        pp.addEventListener('change', function () {
-            if (objectURL) {
-                URL.revokeObjectURL(objectURL);
-            }
-            const file = this.files[0];
-            objectURL = URL.createObjectURL(file);
-        });
-
-        reg.addEventListener("click", () => {
+        reg.addEventListener("click", (event) => {
+            event.preventDefault();
             let nick = document.getElementById("nick").value;
             let club = document.getElementById("club").value;
+            let ppInput = document.getElementById("pp").files[0];
+
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    callback(reader.result);
+                }
+                reader.readAsDataURL(xhr.response);
+            };
+            let url = ''
+            xhr.open('GET', url);
 
             if (nick.length == 0) {
-                event.preventDefault();
                 document.getElementById("error").innerText = "Вы не ввели ник!";
                 return;
             }
             if (club.length == 0) {
-                event.preventDefault();
                 document.getElementById("error").innerText = "Вы не ввели клуб!";
                 return;
             }
 
-            let data = {
-                nick: nick,
-                club: club,
-                pp: objectURL
+            if (ppInput) {
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    let data = {
+                        nick: nick,
+                        club: club,
+                        pp: reader.result // передаем закодированное изображение
+                    }
+                    tg.sendData(JSON.stringify(data));
+                    tg.close();
+                }
+                reader.readAsDataURL(ppInput); // читаем файл как Data URL
+            } else {
+                // Если фото не выбрано, отправляем данные без него
+                let data = {
+                    nick: nick,
+                    club: club,
+                    pp: null // или другое значение по умолчанию
+                }
+                tg.sendData(JSON.stringify(data));
+                tg.close();
             }
-            tg.sendData(JSON.stringify(data));
-            tg.close();
         });
     </script>
 </body>
