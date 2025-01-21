@@ -33,8 +33,7 @@
         let reg = document.getElementById("reg");
         tg.expand();
 
-        reg.addEventListener("click", (event) => {
-            event.preventDefault();
+        reg.addEventListener("click", () => {
             let nick = document.getElementById("nick").value;
             let club = document.getElementById("club").value;
 
@@ -50,7 +49,6 @@
             let data = {
                 nick: nick,
                 club: club,
-                pp: base64String // передаем закодированное изображение
             }
             tg.sendData(JSON.stringify(data));
             tg.close();
