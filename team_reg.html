@@ -35,7 +35,7 @@
         reg.addEventListener("click", () => {
             let arr = [];
 
-            let data = {}
+            let data = {'nick': document.getElementById("name").value}
             for (let i = 0; i < inputs.length; i++) {
                 data['member' + i] = inputs[i].value
             }
