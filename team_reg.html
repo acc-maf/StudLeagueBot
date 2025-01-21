@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div>
+        <h1 style="text-align: center;">Регистрация</h1>
+    </div>
+    <form id="regform" style="text-align: center;">
+        <input type="text" placeholder="Название команды" id="name">
+        <button id="addButton">Добавить участника</button>
+        <button id="reg">Зарегистрироваться</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        let reg = document.getElementById("reg");
+        let butt = document.getElementById("addButton");
+        let form = document.getElementById("regform");
+        let inputs = [];
+
+        butt.addEventListener("click", (event) => {
+            event.preventDefault();
+            let input = document.createElement('input');
+            input.type = "text";
+            input.placeholder = "Введите ник участника";
+            form.appendChild(input);
+            inputs.push(input);
+        });
+
+        reg.addEventListener("click", () => {
+            let arr = [];
+
+            let data = {}
+            for (let i = 0; i < inputs.length; i++) {
+                data['member' + i] = inputs[i].value
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
+</body>
+</html>
