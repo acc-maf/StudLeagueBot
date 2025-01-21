@@ -36,27 +36,27 @@
         let reg = document.getElementById("reg");
         tg.expand();
 
+        let objectURL;
+        pp.addEventListener('change', function () {
+            //if (objectURL) {
+                //URL.revokeObjectURL(objectURL);
+            //}
+            const file = this.files[0];
+            objectURL = URL.createObjectURL(file);
+            link.download = file.name; // this name is used when the user downloads the file
+        });
+
         reg.addEventListener("click", () => {
-            event.preventDefault();
             let nick = document.getElementById("nick").value;
             let club = document.getElementById("club").value;
-            let pp = document.getElementById("pp").value;
 
-            let objectURL;
-            pp.addEventListener('change', function () {
-                if (objectURL) {
-                    // revoke the old object url to avoid using more memory than needed
-                    URL.revokeObjectURL(objectURL);
-                }
-                const file = this.files[0];
-                objectURL = URL.createObjectURL(file);
-                link.download = file.name; // this name is used when the user downloads the file
-            });
             if (nick.length == 0) {
+                event.preventDefault();
                 document.getElementById("error").innerText = "Вы не ввели ник!";
                 return;
             }
             if (club.length == 0) {
+                event.preventDefault();
                 document.getElementById("error").innerText = "Вы не ввели клуб!";
                 return;
             }
