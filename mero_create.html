@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div>
+        <h1 style="text-align: center;">Создание мероприятия</h1>
+    </div>
+    <form style="text-align: center;">
+        <input type="text" placeholder="Идентификатор" id="identify">
+        <input type="text" placeholder="Название" id="name">
+        <textarea placeholder="Описание" id="desc"></textarea>
+        <input type="text" placeholder="Дата и время начала" id="date">
+        <input type="number" placeholder="Лимит участников" min="10" max="100" step="5" id="limit">
+        <input type="number" placeholder="Стоимость" min="100" max="10000" step="50" id="cost">
+        <br>
+        <button id="create">Создать</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let create = document.getElementById("create");
+        tg.expand();
+
+        create.addEventListener("click", () => {
+            let identify = document.getElementById("identify").value;
+            let name = document.getElementById("name").value;
+            let desc = document.getElementById("desc").value;
+            let date = document.getElementById("date").value;
+            let limit = document.getElementById("limit").value;
+            let cost = document.getElementById("cost").value;
+
+            let data = {
+                identify: identify,
+                name: name,
+                desc: desc,
+                date: date,
+                limit: limit,
+                cost: cost
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
+</body>
+</html>
