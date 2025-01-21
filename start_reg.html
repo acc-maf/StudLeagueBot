@@ -42,17 +42,6 @@
             let club = document.getElementById("club").value;
             let ppInput = document.getElementById("pp").files[0];
 
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function() {
-                let reader = new FileReader();
-                reader.onloadend = function() {
-                    callback(reader.result);
-                }
-                reader.readAsDataURL(xhr.response);
-            };
-            let url = ''
-            xhr.open('GET', url);
-
             if (nick.length == 0) {
                 document.getElementById("error").innerText = "Вы не ввели ник!";
                 return;
@@ -62,29 +51,26 @@
                 return;
             }
 
-            if (ppInput) {
-                let reader = new FileReader();
-                reader.onloadend = function() {
-                    let data = {
-                        nick: nick,
-                        club: club,
-                        pp: reader.result // передаем закодированное изображение
-                    }
-                    tg.sendData(JSON.stringify(data));
-                    tg.close();
-                }
-                reader.readAsDataURL(ppInput); // читаем файл как Data URL
-            } else {
-                // Если фото не выбрано, отправляем данные без него
+            toBase64(ppInput).then(base64String => {
                 let data = {
                     nick: nick,
                     club: club,
-                    pp: null // или другое значение по умолчанию
+                    pp: base64String // передаем закодированное изображение
                 }
                 tg.sendData(JSON.stringify(data));
                 tg.close();
-            }
+            });
         });
+
+        function toBase64(file) {
+            return new Promise((resolve) => {
+                let reader = new FileReader();
+                reader.onload = () => {
+                    resolve(reader.result); // Возвращаем результат
+                };
+                reader.readAsDataURL(file);
+            });
+        }
     </script>
 </body>
 </html>
