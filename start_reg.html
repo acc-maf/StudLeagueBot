@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <datalist id = "clubs">
+        <option value="TechnoMafia"></option>
+        <option value="Чёрный ход"></option>
+        <option value="LETI-MAFIA"></option>
+        <option value="BONCHMAFIA"></option>
+        <option value="Polytech mafia community"></option>
+        <option value="Mining Mafia"></option>
+        <option value="Вечерняя партия"></option>
+        <option value="Polemica SPb"></option>
+        <option value="Иллюzия ОбмаNа"></option>
+        <option value="TITAN SPb"></option>
+    </datalist>
+    <div>
+        <h1 style="text-align: center;">Создание турнира</h1>
+    </div>
+    <form style="text-align: center;">
+        <input type="text" placeholder="Ник" id="nick">
+        <input type="text" list="clubs" placeholder="Клуб" id="club">
+        <br>
+        <label for="pp">Отправьте ваше фото, которое будет использоваться для анонсов турниров и мероприятий</label>
+        <input type="file" id="pp" accept="image/png, image/jpeg">
+        <br>
+        <button id="reg">Зерегистрироваться</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let reg = document.getElementById("create");
+        tg.expand();
+
+        reg.addEventListener("click", () => {
+            let nick = document.getElementById("nick").value;
+            let club = document.getElementById("club").value;
+            let pp = document.getElementById("pp").value;
+
+            let data = {
+                nick: nick,
+                club: club,
+                pp: pp
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
+</body>
+</html>
