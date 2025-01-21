@@ -28,7 +28,7 @@
         <input type="file" id="pp" accept="image/png, image/jpeg">
         <div id="error"></div>
         <br>
-        <button id="reg">Зерегистрироваться</button>
+        <button id="reg">Зарегистрироваться</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <script>
@@ -40,19 +40,32 @@
             let nick = document.getElementById("nick").value;
             let club = document.getElementById("club").value;
             let pp = document.getElementById("pp").value;
+
+            let objectURL;
+            pp.addEventListener('change', function () {
+                if (objectURL) {
+                    // revoke the old object url to avoid using more memory than needed
+                    URL.revokeObjectURL(objectURL);
+                }
+                const file = this.files[0];
+                objectURL = URL.createObjectURL(file);
+                link.download = file.name; // this name is used when the user downloads the file
+            });
             if (nick.length == 0) {
+                event.preventDefault();
                 document.getElementById("error").innerText = "Вы не ввели ник!";
                 return;
             }
             if (club.length == 0) {
-                document.getElementById("error").innerText = "Вы не ввели ник!";
+                event.preventDefault();
+                document.getElementById("error").innerText = "Вы не ввели клуб!";
                 return;
             }
 
             let data = {
                 nick: nick,
                 club: club,
-                pp: pp
+                pp: objectURL
             }
             tg.sendData(JSON.stringify(data));
             tg.close();
