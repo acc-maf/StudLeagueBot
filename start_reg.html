@@ -43,7 +43,6 @@
             //}
             const file = this.files[0];
             objectURL = URL.createObjectURL(file);
-            link.download = file.name; // this name is used when the user downloads the file
         });
 
         reg.addEventListener("click", () => {
