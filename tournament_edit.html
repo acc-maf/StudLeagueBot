@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div>
+        <h1 style="text-align: center;">Изменение турнира</h1>
+        <h3 style="text-align: center;">Введите только то, что хотите изменить</h3>
+    </div>
+    <form style="text-align: center;">
+        <input type="text" placeholder="Название" id="name">
+        <textarea placeholder="Описание" id="desc"></textarea>
+        <input type="text" placeholder="Дата и время начала" id="date">
+        <input type="text" placeholder="Правила (Polemica, ФСМ, МСЛ)" id="rules">
+        <input type="text" placeholder="Скоринг (Polemica, ФСМ, МСЛ)" id="score">
+        <input type="number" placeholder="Лимит участников" min="10" max="100" step="5" id="limit">
+        <input type="number" placeholder="Стоимость" min="100" max="10000" step="50" id="cost">
+        <br>
+        <label for="status">Статус:</label>
+        <br>
+        <select id="status">
+            <option value="">Оставить как есть</option>
+            <option value=0>Виден только админам</option>
+            <option value=1>Открытая регистрация</option>
+            <option value=2>Регистрация по заявкам</option>
+        </select>
+        <br>
+        <button id="reg">Изменить</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        let reg = document.getElementById("reg");
+
+        reg.addEventListener("click", () => {
+            let name = document.getElementById("name").value;
+            let desc = document.getElementById("desc").value;
+            let date = document.getElementById("date").value;
+            let rules = document.getElementById("rules").value;
+            let score = document.getElementById("score").value;
+            let limit = document.getElementById("limit").value;
+            let cost = document.getElementById("cost").value;
+            let status = document.getElementById("status").value;
+
+            let data = {
+                name: name,
+                desc: desc,
+                date: date,
+                rules: rules,
+                score: score,
+                limit: limit,
+                cost: cost,
+                status: status
+            }
+
+            if (name.length == 0) {
+                delete data.name;
+            }
+            if (desc.length == 0) {
+                delete data.desc;
+            }
+            if (date.length == 0) {
+                delete data.date;
+            }
+            if (rules.length == 0) {
+                delete data.rules;
+            }
+            if (score.length == 0) {
+                delete data.score;
+            }
+            if (limit.length == 0) {
+                delete data.limit;
+            }
+            if (cost.length == 0) {
+                delete data.cost;
+            }
+            if (status.length == 0) {
+                delete data.status;
+            }
+
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
+</body>
+</html>
