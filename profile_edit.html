@@ -21,10 +21,6 @@
         <h1 style="text-align: center;">Изменение профиля</h1>
     </div>
     <form style="text-align: center;">
-        <select id="what">
-            <option value="nick">Ник</option>
-            <option value="club">Клуб</option>
-        </select>
         <input class="name" type="text" placeholder="Ник" id="nick">
         <input class="club" type="text" list="clubs" placeholder="Клуб" id="club">
         <br>
@@ -34,45 +30,24 @@
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
-
         let reg = document.getElementById("reg");
-        let what = document.getElementById("what");
-
-        what.addEventListener("change", (event) => {
-            event.preventDefault();
-            let val = document.getElementById("what").value;
-            if (val == "nick") {
-                document.getElementById("nick").style.display = 'block';
-            } else {
-                document.getElementById("club").style.display = 'block';
-            }
-        });
 
         reg.addEventListener("click", () => {
             let nick = document.getElementById("nick").value;
             let club = document.getElementById("club").value;
 
-            if (nick.length != 0) {
-                let data = {
-                    nick: nick
-                }
-                tg.sendData(JSON.stringify(data));
-                tg.close();
-                return;
-            }
-            if (club.length != 0) {
-                let data = {
-                    club: club
-                }
-                tg.sendData(JSON.stringify(data));
-                tg.close();
-                return;
-            }
-
             let data = {
                 nick: nick,
                 club: club,
             }
+
+            if (nick.length == 0) {
+                delete data.nick;
+            }
+            if (club.length == 0) {
+                delete data.club;
+            }
+
             tg.sendData(JSON.stringify(data));
             tg.close();
         });
