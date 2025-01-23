@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <datalist id = "clubs">
+        <option value="TechnoMafia"></option>
+        <option value="Чёрный ход"></option>
+        <option value="LETI-MAFIA"></option>
+        <option value="BONCHMAFIA"></option>
+        <option value="Polytech mafia community"></option>
+        <option value="Mining Mafia"></option>
+        <option value="Вечерняя партия"></option>
+        <option value="Polemica SPb"></option>
+        <option value="Иллюzия ОбмаNа"></option>
+        <option value="TITAN SPb"></option>
+    </datalist>
+    <div>
+        <h1 style="text-align: center;">Изменение профиля</h1>
+    </div>
+    <form style="text-align: center;">
+        <select id="what">
+            <option value="nick">Ник</option>
+            <option value="club">Клуб</option>
+        </select>
+        <input class="name" type="text" placeholder="Ник" id="nick">
+        <input class="club" type="text" list="clubs" placeholder="Клуб" id="club">
+        <br>
+        <button id="reg">Изменить</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        let reg = document.getElementById("reg");
+        let what = document.getElementById("what");
+
+        what.addEventListener("change", (event) => {
+            event.preventDefault();
+            let val = document.getElementById("what").value;
+            if (val == "nick") {
+                document.getElementById("nick").style.display = 'block';
+            } else {
+                document.getElementById("club").style.display = 'block';
+            }
+        });
+
+        reg.addEventListener("click", () => {
+            let nick = document.getElementById("nick").value;
+            let club = document.getElementById("club").value;
+
+            if (nick.length != 0) {
+                let data = {
+                    nick: nick
+                }
+                tg.sendData(JSON.stringify(data));
+                tg.close();
+                return;
+            }
+            if (club.length != 0) {
+                let data = {
+                    club: club
+                }
+                tg.sendData(JSON.stringify(data));
+                tg.close();
+                return;
+            }
+
+            let data = {
+                nick: nick,
+                club: club,
+            }
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        });
+    </script>
+</body>
+</html>
