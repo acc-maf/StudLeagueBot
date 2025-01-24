@@ -12,6 +12,7 @@
         <input type="text" placeholder="Идентификатор" id="identify">
         <input type="text" placeholder="Название" id="name">
         <textarea placeholder="Описание" id="desc"></textarea>
+        <input type="text" placeholder="Ссылка для проходки" id="proh">
         <input type="text" placeholder="Дата и время начала" id="date">
         <input type="number" placeholder="Лимит участников" min="10" max="100" step="5" id="limit">
         <input type="number" placeholder="Стоимость (0, если бесплатно)" min="0" max="10000" step="50" id="cost">
@@ -28,6 +29,7 @@
             let identify = document.getElementById("identify").value;
             let name = document.getElementById("name").value;
             let desc = document.getElementById("desc").value;
+            let proh = document.getElementById("proh").value;
             let date = document.getElementById("date").value;
             let limit = document.getElementById("limit").value;
             let cost = document.getElementById("cost").value;
@@ -36,6 +38,7 @@
                 identify: identify,
                 name: name,
                 desc: desc,
+                proh: proh,
                 date: date,
                 limit: limit,
                 cost: cost
