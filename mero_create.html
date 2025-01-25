@@ -12,10 +12,12 @@
         <input type="text" placeholder="Идентификатор" id="identify">
         <input type="text" placeholder="Название" id="name">
         <textarea placeholder="Описание" id="desc"></textarea>
-        <input type="text" placeholder="Ссылка для проходки" id="proh">
+        <input type="text" placeholder="Ссылка для проходки (необяз)" id="proh">
+        <input type="number" placeholder="Дистанция" min="0" max="10" id="distance">
         <input type="text" placeholder="Дата и время начала" id="date">
         <input type="number" placeholder="Лимит участников" min="10" max="100" step="5" id="limit">
         <input type="number" placeholder="Стоимость (0, если бесплатно)" min="0" max="10000" step="50" id="cost">
+        <div id="error"></div>
         <br>
         <button id="create">Создать</button>
     </form>
@@ -30,15 +32,46 @@
             let name = document.getElementById("name").value;
             let desc = document.getElementById("desc").value;
             let proh = document.getElementById("proh").value;
+            let distance = document.getElementById("distance").value;
             let date = document.getElementById("date").value;
             let limit = document.getElementById("limit").value;
             let cost = document.getElementById("cost").value;
+
+            if (identify.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели идентификатор!";
+                return;
+            }
+            if (name.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели название!";
+                return;
+            }
+            if (desc.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели описание!";
+                return;
+            }
+            if (distance.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели дистанцию!";
+                return;
+            }
+            if (date.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели дату!";
+                return;
+            }
+            if (limit.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели лимит участников!";
+                return;
+            }
+            if (cost.length == 0) {
+                document.getElementById("error").innerText = "Вы не ввели стоимость (введите 0, если турнир бесплатный)!";
+                return;
+            }
 
             let data = {
                 identify: identify,
                 name: name,
                 desc: desc,
                 proh: proh,
+                distance: distance,
                 date: date,
                 limit: limit,
                 cost: cost
