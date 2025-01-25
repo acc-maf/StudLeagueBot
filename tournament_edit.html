@@ -12,6 +12,7 @@
     <form style="text-align: center;">
         <input type="text" placeholder="Название" id="name">
         <textarea placeholder="Описание" id="desc"></textarea>
+        <input type="number" placeholder="Дистанция" min="0" max="10" id="distance">
         <input type="text" placeholder="Дата и время начала" id="date">
         <input type="text" placeholder="Правила (Polemica, ФСМ, МСЛ)" id="rules">
         <input type="text" placeholder="Скоринг (Polemica, ФСМ, МСЛ)" id="score">
@@ -38,6 +39,7 @@
         reg.addEventListener("click", () => {
             let name = document.getElementById("name").value;
             let desc = document.getElementById("desc").value;
+            let desc = document.getElementById("distance").value;
             let date = document.getElementById("date").value;
             let rules = document.getElementById("rules").value;
             let score = document.getElementById("score").value;
@@ -48,6 +50,7 @@
             let data = {
                 name: name,
                 desc: desc,
+                distance: distance,
                 date: date,
                 rules: rules,
                 score: score,
@@ -61,6 +64,9 @@
             }
             if (desc.length == 0) {
                 delete data.desc;
+            }
+            if (distance.length == 0) {
+                delete data.distance;
             }
             if (date.length == 0) {
                 delete data.date;
