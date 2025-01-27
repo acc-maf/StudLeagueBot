@@ -27,13 +27,14 @@
         tg.expand();
 
         let date = document.getElementById("date").value;
-        var today = new Date().toISOString().split('T')[0];
+        let today = new Date().toISOString().split('T')[0];
         document.getElementById("date").setAttribute('min', today);
 
         create.addEventListener("click", () => {
             let identify = document.getElementById("identify").value;
             let name = document.getElementById("name").value;
             let desc = document.getElementById("desc").value;
+            let date = document.getElementById("date").value;
             let proh = document.getElementById("proh").value;
             let limit = document.getElementById("limit").value;
             let cost = document.getElementById("cost").value;
