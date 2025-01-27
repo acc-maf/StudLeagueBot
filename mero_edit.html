@@ -12,7 +12,7 @@
     <form style="text-align: center;">
         <input type="text" placeholder="Название" id="name">
         <textarea placeholder="Описание и ссылка на проходку" id="desc"></textarea>
-        <input type="text" placeholder="Дата и время начала" id="date">
+        <input type="datetime-local" id="date">
         <input type="number" placeholder="Лимит участников" min="10" max="100" step="5" id="limit">
         <input type="number" placeholder="Стоимость" min="100" max="10000" step="50" id="cost">
         <br>
@@ -32,6 +32,16 @@
         let tg = window.Telegram.WebApp;
         tg.expand();
         let reg = document.getElementById("reg");
+        
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = String(today.getMonth() + 1).padStart(2, '0');
+        let day = String(today.getDate()).padStart(2, '0');
+        let hours = String(today.getHours()).padStart(2, '0');
+        let minutes = String(today.getMinutes()).padStart(2, '0');
+        let minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+        document.getElementById("date").setAttribute('min', minDateTime);
 
         reg.addEventListener("click", () => {
             let name = document.getElementById("name").value;
