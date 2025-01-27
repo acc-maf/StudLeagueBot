@@ -26,9 +26,15 @@
         let create = document.getElementById("create");
         tg.expand();
 
-        let date = document.getElementById("date").value;
-        let today = new Date().toISOString().split('T')[0];
-        document.getElementById("date").setAttribute('min', today);
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = String(today.getMonth() + 1).padStart(2, '0');
+        let day = String(today.getDate()).padStart(2, '0');
+        let hours = String(today.getHours()).padStart(2, '0');
+        let minutes = String(today.getMinutes()).padStart(2, '0');
+        let minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    
+        document.getElementById("date").setAttribute('min', minDateTime);
 
         create.addEventListener("click", () => {
             let identify = document.getElementById("identify").value;
