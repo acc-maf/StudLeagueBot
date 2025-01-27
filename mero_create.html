@@ -13,7 +13,7 @@
         <input type="text" placeholder="Название" id="name">
         <textarea placeholder="Описание" id="desc"></textarea>
         <input type="text" placeholder="Ссылка для проходки (необяз)" id="proh">
-        <input type="text" placeholder="Дата и время начала" id="date">
+        <input type="datetime-local" min="" id="date">
         <input type="number" placeholder="Лимит участников" min="10" max="100" step="5" id="limit">
         <input type="number" placeholder="Стоимость (0, если бесплатно)" min="0" max="10000" step="50" id="cost">
         <div id="error"></div>
@@ -26,12 +26,15 @@
         let create = document.getElementById("create");
         tg.expand();
 
+        let date = document.getElementById("date").value;
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById("date").setAttribute('min', today);
+
         create.addEventListener("click", () => {
             let identify = document.getElementById("identify").value;
             let name = document.getElementById("name").value;
             let desc = document.getElementById("desc").value;
             let proh = document.getElementById("proh").value;
-            let date = document.getElementById("date").value;
             let limit = document.getElementById("limit").value;
             let cost = document.getElementById("cost").value;
 
